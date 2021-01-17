@@ -2,3 +2,9 @@ Cara Uninstall Ngix :
 sudo apt-get remove nginx
 sudo apt-get remove nginx-common
 sudo apt-get autoremove --purge
+
+
+Fix tanpa error
+sudo apt-get remove nginx nginx-common # Menghapus semua kecuali file konfigurasi.
+sudo apt-get purge nginx nginx-common # Menghapus semuanya.
+sudo apt-get autoremove # Setelah menggunakan salah satu dari perintah di atas, gunakan ini untuk menghapus dependensi yang digunakan oleh nginx yang tidak lagi diperlukan.
