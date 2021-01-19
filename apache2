@@ -1,0 +1,11 @@
+# Unistall Apache2 :
+
+sudo service apache2 stop
+sudo apt-get purge apache2*
+sudo apt-get autoremove
+
+whereis apache2 //melihat folder apache2
+output :  apache2: /etc/apache2  
+sudo rm -rf /etc/apache2  / remove forlder apache
+
+
