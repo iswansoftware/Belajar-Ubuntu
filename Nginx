@@ -1,8 +1,15 @@
-Cara Uninstall Ngix :
+## Cara Install Nginx ##
+https://www.linuxsec.org/2017/01/lemp-stack-tutorial.html
+sudo apt-get update
+sudo apt-get install nginx
+
+
+
+
+## Cara Uninstall Ngix :##
 sudo apt-get remove nginx
 sudo apt-get remove nginx-common
 sudo apt-get autoremove --purge
-
 
 Fix tanpa error
 sudo apt-get remove nginx nginx-common # Menghapus semua kecuali file konfigurasi.
