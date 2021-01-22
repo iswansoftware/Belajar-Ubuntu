@@ -45,3 +45,14 @@ sudo apt install phpmyadmin
     sudo ln -s /etc/phpmyadmin/apache.conf /etc/apache2/conf-enabled/phpmyadmin.conf
     sudo /etc/init.d/apache2 reload
 
+===>
+ membuat user baru dan menjadi kan super user
+ 
+ sudo mysql -p -u root
+ 
+ CREATE USER 'user_anda'@'%' IDENTIFIED BY 'password_anda';
+ GRANT ALL PRIVILEGES ON *.* TO 'pmauser'@'%' WITH GRANT OPTION; // manajadikan user anda menjadi super user
+ 
+ 
+ 
+ 
