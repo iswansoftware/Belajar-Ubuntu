@@ -16,3 +16,32 @@ sudo apt-get install php7.1 libapache2-mod-php7.1 php7.1-mcrypt php7.1-cli php7.
 
 web php apache sukses
 https://www.cloudbooklet.com/how-to-install-php-8-on-ubuntu/
+
+
+#install php myadmin
+=> sudo apt-get remove phpmyadmin --purge  / uninstall phpmyadmin sebelumnya
+==>apt-get autoremove
+
+
+sudo apt install phpmyadmin
++------------------------+ Configuring phpmyadmin +-------------------------+
+ | Please choose the web server that should be automatically configured to   |
+ | run phpMyAdmin.                                                           |
+ |                                                                           |
+ | Web server to reconfigure automatically:                                  |
+ |                                                                           |
+ |    [x] apache2                                                            |
+ |    [ ] lighttpd                                                           |
+ |                                                                           |
+ |                                                                           |
+ |                                 <ok>                                      |
+ |                                                                           |
+ +---------------------------------------------------------------------------+
+ 
+ akses http :localhost/pypadmin
+ 
+
+==> Apabila masih notfound
+    sudo ln -s /etc/phpmyadmin/apache.conf /etc/apache2/conf-enabled/phpmyadmin.conf
+    sudo /etc/init.d/apache2 reload
+
