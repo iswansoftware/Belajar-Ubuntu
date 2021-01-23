@@ -1,0 +1,16 @@
+# Install Laravel Apache2
+composer create-project --prefer-dist laravel/laravel [project_name]
+
+Menggunakan Laravel untuk Lingkungan Pengembangan Lokal
+  php artisan serve --host=[IP] --port=[port]
+
+
+Menggunakan Laravel untuk Deploy Aplikasi
+  sudo mv example /var/www/html/
+  sudo chgrp -R www-data /var/www/html/example/
+  sudo chmod -R 775 /var/www/html/example/storage
+
+membuat virtual host
+  cd /etc/apache2/sites-available
+  sudo nano laravel_project.conf
+
