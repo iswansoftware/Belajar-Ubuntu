@@ -1,0 +1,51 @@
+
+https://medium.com/@uwaiscode/membuat-virtual-host-untuk-apache2-di-ubuntu-419020b1246c
+
+Membuat virtual host untuk Apache2 di ubuntu
+Abu Uwais
+Abu Uwais
+Feb 11, 2020·1 min read
+
+Virtual host merupakan metode yang digunakan untuk merubah dokumen “root” menjadi URL/Domain di dalam server lokal atau jika diibaratkan, kita akan membuat sebuah domain mainan. Seperti contoh “/var/www/html/project” menjadi “project.test”.
+
+Ok, langsung saja ya kawan-kawan…
+
+Pertama kita membuat dulu folder yang akan dijadikan folder root untuk domain/virtual host yang akan kita buat. Seperti saya di praktik ini, akan membuat folder dengan nama “albaniponpes” pada lokasi “/var/www/html/sistempondok/albaniponpes/” karena kebetulan sedang melanjutkan project yang tak kunjung selesai (walah curhat).
+
+Selanjutnya, buat file host nya dengan menggunakan perintah sebagai berikut
+
+sudo nano /etc/apache2/sites-available/albaniponpes.test.conf
+
+Lalu masukan kode berikut pada file host yang baru dibuat tadi
+
+<VirtualHost *:80>    ServerAdmin admin@localhost    ServerName albaniponpes.test    ServerAlias www.albaniponpes.test    DocumentRoot /var/www/html/sistempondok/albaniponpes    <Directory "/var/www/html/sistempondok/albaniponpes">     Allowoverride All    </Directory>    ErrorLog ${APACHE_LOG_DIR}/error.log    CustomLog ${APACHE_LOG_DIR}/access.log combined</VirtualHost>
+
+Lalu simpan dan tutup.
+
+Selanjutnya, ketikan kode berikut untuk enable site/mengaktifkan host yang baru dibuat tadi
+
+sudo a2ensite albaniponpes.test
+
+Setelah itu restart webserver dengan perintah berikut
+
+sudo systemctl restart apache2
+
+Daftarkan virtual host di server lokal komputer kamu dengan membuat dan merubat kode milik file “/etc/hosts”
+
+sudo nano /etc/hosts
+
+Tambahkan
+
+127.0.0.1  albaniponpes.test 
+
+untuk ip bisa disesuaikan dengan ip yang ingin kamu gunakan, karena saya pratiknya di lokal jadi cukup dengan 127.0.0.1 saja.
+
+Selesai, mari kita coba.
+
+Buka browser dan ketikan pada url http://albaniponpes.test
+
+Maka in syaa allah, virtual host berhasil dibuat.
+
+Sekian semoga bermanfaat… dan jika teman-teman membutuhkan versi instannya, kamu bisa menggunakan script yang sudah ku bagikan di github
+
+https://github.com/utit/apache2-virtual-host-generator
