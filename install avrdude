@@ -1,0 +1,58 @@
+http://visionhack.de/2012/09/23/installation-usap-programmer-with-ubuntu/
+
+
+Installation: USAP-Programmer with ubuntu
+
+23. September 2012 von pschmidt | 3 Kommentare
+
+Two weeks ago, I purchased a ISP-Programmer and ATmega328p from Guloshop. The programmer is based on the USBasp designed by Fischl. Since then, I had some trouble getting the programmer recognized with Ubuntu 12.04. Here’s a quick tutorial how to fix this, so you can get your hands dirty.
+
+Install AVRdude and libftdi1 using
+1
+	
+sudo apt-get install avrdude
+
+So after this, plug in the USB-Programmer and promt dmesg
+1
+2
+3
+	
+$ dmesg
+[...]
+[15014.460382] usb 5-1: new low-speed USB device number 4 using uhci_hcd
+
+As you can see, a new usb-device is recognized. Search for the device/folder called USBasp in your device folder
+1
+	
+$ ls /dev
+
+If the folder is not in there, try to list all usb-devices itself unsing lsusb
+1
+	
+$ lsusb
+1
+2
+3
+	
+Bus 006 Device 002: ID 046d:c526 Logitech, Inc. Nano Receiver
+Bus 007 Device 002: ID 044e:3017 Alps Electric Co., Ltd BCM2046 Bluetooth Device
+Bus 005 Device 004: ID 16c0:05dc VOTI shared ID for use with libusb
+
+There you can see a device with the ID 16c0:05dc. This is the USBasp-programmer. 16c005dc is the VendorID and 05dc is the ProductID. We need this information for our next step.
+
+To get the programmer recognized we have to define a new rule for a service called udev
+1
+	
+sudo gedit /etc/udev/rules.d/60-objdev.rules
+
+Copy the following lines into the file and save it
+1
+	
+SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ATTRS{idVendor}=="16c0", ATTRS{idProduct}=="05dc", MODE="0666", SYMLINK+="USBasp"
+
+After this, restart udev
+1
+	
+sudo /etc/init.d/udev restart
+
+Plugin your USBasp-Programmer, list your /dev/ folder and you will see a simlink called USBasp.
